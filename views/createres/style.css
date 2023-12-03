@@ -1,0 +1,247 @@
+.screen {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.screen .div {
+  background-color: #ffffff;
+  overflow: hidden;
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.screen .overlap-group {
+  position: absolute;
+  width: 417px;
+  height: 1035px;
+  top: 0;
+  left: 0;
+  background-color: #d9d9d9;
+}
+
+.screen .overlap {
+  position: absolute;
+  width: 373px;
+  height: 46px;
+  top: 371px;
+  left: 22px;
+  background-color: #999999;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.screen .text-wrapper {
+  top: 7px;
+  left: 48px;
+  position: absolute;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .div-wrapper {
+  position: absolute;
+  width: 373px;
+  height: 46px;
+  top: 293px;
+  left: 22px;
+  background-color: #a1a404;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.screen .text-wrapper-2 {
+  top: 7px;
+  left: 49px;
+  position: absolute;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .overlap-2 {
+  position: absolute;
+  width: 373px;
+  height: 46px;
+  top: 215px;
+  left: 22px;
+  background-color: #999999;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.screen .text-wrapper-3 {
+  position: absolute;
+  top: 7px;
+  left: 153px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .overlap-3 {
+  position: absolute;
+  width: 268px;
+  height: 53px;
+  top: 942px;
+  left: 82px;
+  background-color: #999999;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.screen .text-wrapper-4 {
+  top: 10px;
+  left: 95px;
+  position: absolute;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .overlap-4 {
+  position: absolute;
+  width: 373px;
+  height: 105px;
+  top: 30px;
+  left: 22px;
+  background-color: #999999;
+}
+
+.screen .text-wrapper-5 {
+  position: absolute;
+  top: 27px;
+  left: 35px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.screen .text-wrapper-6 {
+  position: absolute;
+  width: 776px;
+  top: 154px;
+  left: 565px;
+  -webkit-text-stroke: 1px #000000;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #faff06;
+  font-size: 100px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .overlap-5 {
+  position: absolute;
+  width: 908px;
+  height: 426px;
+  top: 493px;
+  left: 487px;
+  background-color: #d9d9d9;
+}
+
+.screen .overlap-6 {
+  position: absolute;
+  width: 836px;
+  height: 60px;
+  top: 282px;
+  left: 42px;
+  background-image: url(./img/rectangle-16.svg);
+  background-size: 100% 100%;
+}
+
+.screen .text-wrapper-7 {
+  position: absolute;
+  top: 14px;
+  left: 26px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .overlap-7 {
+  position: absolute;
+  width: 836px;
+  height: 60px;
+  top: 200px;
+  left: 42px;
+  background-image: url(./img/rectangle-15.svg);
+  background-size: 100% 100%;
+}
+
+.screen .text-wrapper-8 {
+  top: 15px;
+  left: 26px;
+  position: absolute;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .overlap-8 {
+  position: absolute;
+  width: 836px;
+  height: 60px;
+  top: 118px;
+  left: 42px;
+  background-image: url(./img/rectangle-14.svg);
+  background-size: 100% 100%;
+}
+
+.screen .overlap-9 {
+  position: absolute;
+  width: 836px;
+  height: 60px;
+  top: 36px;
+  left: 42px;
+  background-image: url(./img/rectangle-13.svg);
+  background-size: 100% 100%;
+}
+
+.screen .overlap-10 {
+  position: absolute;
+  width: 348px;
+  height: 50px;
+  top: 355px;
+  left: 280px;
+  background-color: #999999;
+}
+
+.screen .text-wrapper-9 {
+  top: 9px;
+  left: 118px;
+  position: absolute;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
