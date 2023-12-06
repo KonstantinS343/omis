@@ -5,6 +5,10 @@
   justify-content: center;
   width: 100%;
 }
+.auth {
+  text-decoration: none;
+  color: inherit;
+}
 
 .screen .div {
   background-color: #ffffff;
@@ -50,7 +54,7 @@
   position: absolute;
   width: 373px;
   height: 46px;
-  top: 485px;
+  top: 643px;
   left: 34px;
   background-color: #999999;
   border: 1px solid;
@@ -58,7 +62,7 @@
 }
 
 .screen .text-wrapper-2 {
-  top: 7px;
+  top: 5px;
   left: 16px;
   position: absolute;
   font-family: "Inter-Regular", Helvetica;
@@ -73,7 +77,7 @@
   position: absolute;
   width: 373px;
   height: 46px;
-  top: 215px;
+  top: 489px;
   left: 34px;
   background-color: #999999;
   border: 1px solid;
@@ -82,7 +86,7 @@
 
 .screen .text-wrapper-3 {
   top: 7px;
-  left: 153px;
+  left: 16px;
   position: absolute;
   font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
@@ -94,18 +98,18 @@
 
 .screen .overlap-3 {
   position: absolute;
-  width: 268px;
-  height: 53px;
-  top: 859px;
-  left: 94px;
+  width: 373px;
+  height: 46px;
+  top: 413px;
+  left: 34px;
   background-color: #999999;
   border: 1px solid;
   border-color: #000000;
 }
 
 .screen .text-wrapper-4 {
-  top: 10px;
-  left: 57px;
+  top: 7px;
+  left: 18px;
   position: absolute;
   font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
@@ -117,18 +121,18 @@
 
 .screen .overlap-4 {
   position: absolute;
-  width: 268px;
-  height: 53px;
-  top: 942px;
-  left: 94px;
-  background-color: #a1a404;
+  width: 373px;
+  height: 46px;
+  top: 215px;
+  left: 34px;
+  background-color: #999999;
   border: 1px solid;
   border-color: #000000;
 }
 
 .screen .text-wrapper-5 {
-  top: 10px;
-  left: 49px;
+  top: 7px;
+  left: 153px;
   position: absolute;
   font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
@@ -140,6 +144,52 @@
 
 .screen .overlap-5 {
   position: absolute;
+  width: 268px;
+  height: 53px;
+  top: 859px;
+  left: 94px;
+  background-color: #a1a404;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.screen .text-wrapper-6 {
+  top: 10px;
+  left: 57px;
+  position: absolute;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .overlap-6 {
+  position: absolute;
+  width: 268px;
+  height: 53px;
+  top: 942px;
+  left: 94px;
+  background-color: #999999;
+  border: 1px solid;
+  border-color: #000000;
+}
+
+.screen .text-wrapper-7 {
+  top: 10px;
+  left: 49px;
+  position: absolute;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.screen .overlap-7 {
+  position: absolute;
   width: 373px;
   height: 105px;
   top: 30px;
@@ -147,7 +197,7 @@
   background-color: #999999;
 }
 
-.screen .text-wrapper-6 {
+.screen .text-wrapper-8 {
   position: absolute;
   top: 27px;
   left: 35px;
@@ -169,7 +219,7 @@
   object-fit: cover;
 }
 
-.screen .text-wrapper-7 {
+.screen .text-wrapper-9 {
   position: absolute;
   width: 776px;
   top: 154px;

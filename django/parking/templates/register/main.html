@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+  </head>
+  <body>
+    <div class="screen">
+      <div class="div">
+        <div class="overlap-group">
+          <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="overlap-3">
+              <input class="text-wrapper-4" type="text" id="username" name="username" placeholder="Имя пользователя">
+            </div>
+            <div class="overlap">
+              <input class="text-wrapper" type="password" id="password" name="password" placeholder="Пароль">
+            </div>
+            <div class="div-wrapper">
+              <input class="text-wrapper-2" type="password" id="password" name="password" placeholder="Подтверждение пароля">
+            </div>
+            <div class="overlap-5">
+              <input class="text-wrapper-6" type="submit" value="Регистрация">
+            </div>
+          </form>
+          <div class="overlap-6"><div class="text-wrapper-7"><a class="auth" href='/login/'>Авторизация</a></div></div>
+          <div class="overlap-7"><div class="text-wrapper-8">ParkSpot Finder</div></div>
+        </div>
+        <img class="avto-camaro" src="{% static 'img/avto_camaro_1.png' %}" />
+        <div class="text-wrapper-9">ParkSpot Finder</div>
+      </div>
+    </div>
+  </body>
+</html>
+
