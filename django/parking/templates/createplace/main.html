@@ -1,26 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{% static 'css/createres.css' %}" />
   </head>
   <body>
     <div class="screen">
       <div class="div">
-        <div class="overlap">
-          <div class="overlap-group"><div class="text-wrapper">Просмотр</div></div>
-          <div class="div-wrapper"><div class="text-wrapper-2">Добавить</div></div>
-          <div class="overlap-2"><div class="text-wrapper-3">О нас</div></div>
-          <div class="overlap-3"><div class="text-wrapper-4">Выйти</div></div>
+        <div class="overlap-group">
+          {% if error %}
+            <div class="error">{{ error }}</div>
+          {% endif %}
+          <div class="overlap"><div class="text-wrapper"><a class="auth"  href={% url 'admin_place' pk%}>Просмотр</a></div></div>
+          <div class="div-wrapper"><div class="text-wrapper-2"><a class="auth"  href={% url 'admin_create' pk%}>Добавить</a></div></div>
           <div class="overlap-4"><div class="text-wrapper-5">ParkSpot Finder</div></div>
         </div>
         <div class="text-wrapper-6">ParkSpot Finder</div>
-        <div class="overlap-group-2">
-          <div class="overlap-5"><div class="text-wrapper-7">Время</div></div>
-          <div class="overlap-6"><div class="text-wrapper-7">Дата</div></div>
-          <div class="overlap-7"><div class="text-wrapper-8">Местоположение</div></div>
-          <div class="overlap-8"><div class="text-wrapper-9">Добавить</div></div>
-        </div>
+        <form action="{% url 'admin_create' pk%}" method="post">
+          {% csrf_token %}
+          <div class="overlap-5">
+              <div class="overlap-7">
+                  <input type="text" id="location" name="location" placeholder="Местоположение">
+              </div>
+              <div class="overlap-8">
+                  <input type="text" id="time" name="time" placeholder="Время">
+              </div>
+              <div class="overlap-9">
+                  <input type="text" id="date" name="date" placeholder="Дата">
+              </div>
+              <div class="overlap-10">
+                  <input type="submit" value="Добавить">
+              </div>
+          </div>
+      </form>
+      
       </div>
     </div>
   </body>

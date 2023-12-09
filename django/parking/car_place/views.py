@@ -1,6 +1,6 @@
 from typing import Any
 from django.views.generic.base import TemplateView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from .controllers import AuthorizationController, ReservationController
 from .models import ParkingSpace
@@ -23,8 +23,11 @@ class RegisterInterface(TemplateView):
 
     def post(self, request, *args, **kwargs):
         self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/register/main.html'
-        self.authorization_controller.register(request=request)
-        return redirect('login')
+        username, error = self.authorization_controller.register(request=request)
+        if username:
+            return redirect('login')
+        else:
+            return render(request, self.template_name, {'error': error})
 
 
 class LoginInterface(TemplateView):
@@ -37,12 +40,15 @@ class LoginInterface(TemplateView):
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/main/main.html'
-        user_id = self.authorization_controller.login(request=request)
+        self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/login/main.html'
+        user_id, error = self.authorization_controller.login(request=request)
         if user_id:
-            return redirect('user', pk=user_id)
+            if not request.user.is_superuser:
+                return redirect('user', pk=user_id)
+            else:
+                return redirect('admin', pk=user_id)
         else:
-            return redirect('home')
+            return render(request, self.template_name, {'error': error})
 
 
 class UserInterface(TemplateView):
@@ -54,18 +60,24 @@ class UserInterface(TemplateView):
         if request.user.id is None:
             return redirect('home')
         if 'delete' in request.path:
-            self.reservation_controller.delete_reservation(id=request.path.split('/')[-2])
+            self.reservation_controller.delete_reservation(id=request.path.split('/')[-2], user_id=request.user.id)
             return redirect('user', pk=request.user.id)
         if 'update' in request.path and request.method.lower() == 'post':
-            self.reservation_controller.change_reservation(request=request, id=request.path.split('/')[-2])
-            return redirect('user', pk=request.user.id)
+            row_id, error = self.reservation_controller.change_reservation(request=request)
+            if row_id:
+                return redirect('user', pk=request.user.id)
+            else:
+                return self.detail(request, error=error)
         if 'detail' in request.path and request.method.lower() == 'get':
             return self.detail(request)
         elif 'create' in request.path and request.method.lower() == 'get':
             return self.create(request)
         elif 'create' in request.path and request.method.lower() == 'post':
-            self.reservation_controller.add_reservation(request=request)
-            return redirect('user', pk=request.user.id)
+            row_id, error = self.reservation_controller.add_reservation(request=request)
+            if row_id:
+                return redirect('user', pk=request.user.id)
+            else:
+                return self.create(request, error)
         elif 'history' in request.path and request.method.lower() == 'get':
             return self.history(request)
         elif 'user' in request.path:
@@ -76,24 +88,29 @@ class UserInterface(TemplateView):
         self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/usermain/main.html'
         return super().get(request)
 
-    def create(self, request):
+    def create(self, request, error=False):
         self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/createres/main.html'
-        return super().get(request)
+        context = self.get_context_data()
+        if error:
+            context['error'] = error
+        return self.render_to_response(context)
 
     def history(self, request):
         self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/historyres/main.html'
         context = self.get_context_data()
         context['orders'] = []
         queryset = ParkingSpace.objects.filter(user_id=request.user.id)
-        for i in range(1, len(queryset) + 1):
-            context['orders'].append(i)
+        for i in queryset:
+            context['orders'].append(i.id)
         return self.render_to_response(context)
 
-    def detail(self, request):
+    def detail(self, request, error=False):
         self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/historydetailres/main.html'
         context = self.get_context_data()
-        context['order'] = ParkingSpace.objects.filter(user_id=request.user.id, id=request.path.split('/')[-1])[0]
-        context['order_id'] = request.path.split('/')[-1]
+        context['order'] = ParkingSpace.objects.filter(user_id=request.user.id, id=request.path.split('/')[-2])[0]
+        context['order_id'] = request.path.split('/')[-2]
+        if error:
+            context['error'] = error
         return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):

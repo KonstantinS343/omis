@@ -9,6 +9,9 @@
     <div class="screen">
       <div class="div">
         <div class="overlap-group">
+          {% if error %}
+            <div class="error">{{ error }}</div>
+          {% endif %}
           <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
             <div class="div-wrapper">

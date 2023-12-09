@@ -1,28 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
- <head>
- <link rel="stylesheet" href="globals.css" />
- <link rel="stylesheet" href="style.css" />
- </head>
- <body>
- <div class="screen">
- <div class="div">
- <div class="overlap-group">
- <div class="overlap"><div class="text-wrapper">Просмотр</div></div>
- <div class="div-wrapper"><div class="text-wrapper-2">Добавить</div></div>
- <div class="overlap-2"><div class="text-wrapper-3">О нас</div></div>
- <div class="overlap-3"><div class="text-wrapper-4">Выйти</div></div>
- <div class="overlap-4"><div class="text-wrapper-5">ParkSpot Finder</div></div>
- </div>
- <div class="text-wrapper-6">ParkSpot Finder</div>
- <div class="overlap-5">
- <div class="overlap-6"><div class="text-wrapper-7">Время</div></div>
- <div class="overlap-7"><div class="text-wrapper-7">Дата</div></div>
- <div class="overlap-8"><div class="text-wrapper-8">Местоположение</div></div>
- <div class="overlap-9"><div class="text-wrapper-9">Сохранить</div></div>
- <div class="overlap-10"><div class="text-wrapper-10">Парковочное место 1</div></d
- </div>
- </div>
- </div>
- </body>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/historydetailres.css' %}" />
+  </head>
+  <body>
+    <div class="screen">
+      <div class="div">
+        <div class="overlap">
+          {% if error %}
+            <div class="error">{{ error }}</div>
+          {% endif %}
+          <div class="overlap-group"><div class="text-wrapper"><a class="auth"  href={% url 'admin_place' pk%}>Просмотр</a></div></div>
+          <div class="div-wrapper"><div class="text-wrapper-2"><a class="auth"  href={% url 'admin_create' pk%}>Добавить</a></div></div>
+          <div class="overlap-4"><div class="text-wrapper-5">ParkSpot Finder</div></div>
+        </div>
+        <div class="text-wrapper-6">ParkSpot Finder</div>
+        <form action="{% url 'admin_place_update' pk order_id%}" method="post">
+          {% csrf_token %}
+          <div class="overlap-group-2">
+            <div class="rectangle"></div>
+            <div class="rectangle-2"></div>
+            <div class="rectangle-3"></div>
+            <div class="rectangle-3"></div>
+            <div class="text-wrapper-7">Информация о бронировании</div>
+            <div class="rectangle-6"></div>
+            <div class="text-wrapper-8"><input type="submit" value="Изменить бронирование"></div>
+            <div class="text-wrapper-7">Информация о бронировании</div>
+            <div class="text-wrapper-9"><input type="text" name="date" value="{{order.date}}"></div>
+            <div class="text-wrapper-10"><input type="text" name="time" value="{{order.time}}"></div>
+            <div class="text-wrapper-11"><input type="text" name="location" value="{{order.location}}"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
+

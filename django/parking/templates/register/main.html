@@ -9,6 +9,9 @@
     <div class="screen">
       <div class="div">
         <div class="overlap-group">
+          {% if error %}
+            <div class="error">{{ error }}</div>
+          {% endif %}
           <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
             <div class="overlap-3">
@@ -18,7 +21,7 @@
               <input class="text-wrapper" type="password" id="password" name="password" placeholder="Пароль">
             </div>
             <div class="div-wrapper">
-              <input class="text-wrapper-2" type="password" id="password" name="password" placeholder="Подтверждение пароля">
+              <input class="text-wrapper-2" type="password" id="password2" name="password2" placeholder="Подтверждение пароля">
             </div>
             <div class="overlap-5">
               <input class="text-wrapper-6" type="submit" value="Регистрация">

@@ -9,6 +9,9 @@
     <div class="screen">
       <div class="div">
         <div class="overlap">
+          {% if error %}
+            <div class="error">{{ error }}</div>
+          {% endif %}
           <div class="overlap-group"><div class="text-wrapper"><a class="auth"  href={% url 'user_history' pk%}>История бронирования</a></div></div>
           <div class="div-wrapper"><div class="text-wrapper-2"><a class="auth"  href={% url 'user_create' pk%}>Создать бронирование</a></div></div>
           <div class="overlap-4"><div class="text-wrapper-5">ParkSpot Finder</div></div>
