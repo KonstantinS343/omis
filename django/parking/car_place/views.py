@@ -2,8 +2,8 @@ from typing import Any
 from django.views.generic.base import TemplateView
 from django.shortcuts import redirect
 
-
-from .controllers import AuthorizationController
+from .controllers import AuthorizationController, ReservationController
+from .models import ParkingSpace
 
 
 class HomeInterface(TemplateView):
@@ -24,7 +24,7 @@ class RegisterInterface(TemplateView):
     def post(self, request, *args, **kwargs):
         self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/register/main.html'
         self.authorization_controller.register(request=request)
-        return redirect('home')
+        return redirect('login')
 
 
 class LoginInterface(TemplateView):
@@ -47,14 +47,56 @@ class LoginInterface(TemplateView):
 
 class UserInterface(TemplateView):
     def __init__(self, **kwargs: Any) -> None:
-        self.authorization_controller = AuthorizationController()
+        self.reservation_controller = ReservationController()
         super().__init__(**kwargs)
 
     def dispatch(self, request, *args: Any, **kwargs: Any):
-        if 'user' in request.path:
+        if request.user.id is None:
+            return redirect('home')
+        if 'delete' in request.path:
+            self.reservation_controller.delete_reservation(id=request.path.split('/')[-2])
+            return redirect('user', pk=request.user.id)
+        if 'update' in request.path and request.method.lower() == 'post':
+            self.reservation_controller.change_reservation(request=request, id=request.path.split('/')[-2])
+            return redirect('user', pk=request.user.id)
+        if 'detail' in request.path and request.method.lower() == 'get':
+            return self.detail(request)
+        elif 'create' in request.path and request.method.lower() == 'get':
+            return self.create(request)
+        elif 'create' in request.path and request.method.lower() == 'post':
+            self.reservation_controller.add_reservation(request=request)
+            return redirect('user', pk=request.user.id)
+        elif 'history' in request.path and request.method.lower() == 'get':
+            return self.history(request)
+        elif 'user' in request.path:
             return self.main(request)
         return super().dispatch(request, *args, **kwargs)
 
     def main(self, request):
         self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/usermain/main.html'
         return super().get(request)
+
+    def create(self, request):
+        self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/createres/main.html'
+        return super().get(request)
+
+    def history(self, request):
+        self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/historyres/main.html'
+        context = self.get_context_data()
+        context['orders'] = []
+        queryset = ParkingSpace.objects.filter(user_id=request.user.id)
+        for i in range(1, len(queryset) + 1):
+            context['orders'].append(i)
+        return self.render_to_response(context)
+
+    def detail(self, request):
+        self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/historydetailres/main.html'
+        context = self.get_context_data()
+        context['order'] = ParkingSpace.objects.filter(user_id=request.user.id, id=request.path.split('/')[-1])[0]
+        context['order_id'] = request.path.split('/')[-1]
+        return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pk'] = self.request.user.id
+        return context

@@ -6,6 +6,11 @@
   width: 100%;
 }
 
+.auth {
+  text-decoration: none;
+  color: inherit;
+}
+
 .screen .div {
   background-color: #ffffff;
   overflow: hidden;

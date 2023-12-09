@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
 
-from .manager import UserDAL
+from functools import reduce
+
+from .manager import UserDAL, ReservationDAL
+from .models import ParkingSpace
 
 
 class AuthorizationController:
@@ -12,7 +14,6 @@ class AuthorizationController:
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        print(user)
         if user is not None:
             login(request, user)
             return user.id
@@ -25,26 +26,40 @@ class AuthorizationController:
         return None
 
 
-# class ReservationController:
-#     def __init__(self) -> None:
-#         self.__reservation_dal: ReservationDAL = ReservationDAL()
-# 
-#     def add_reservation(parking_space: ParkingSpace) -> None:
-#         pass
-# 
-#     def delete_reservation(parking_space: ParkingSpace) -> None:
-#         pass
-# 
-#     def change_reservation(old_parking_space: ParkingSpace, new_parking_space: ParkingSpace) -> None:
-#         pass
-# 
-# 
+class ReservationController:
+    def __init__(self) -> None:
+        self.__reservation_dal: ReservationDAL = ReservationDAL()
+
+    def add_reservation(self, request) -> None:
+        data = dict(request.POST)
+        del data['csrfmiddlewaretoken']
+        data = {key: reduce(lambda x, y: x + y, value) for key, value in data.items()}
+        data['user_id'] = request.user.id
+        places = ParkingSpace.objects.filter(location=data['location'])
+        if places:
+            return None
+        self.__reservation_dal.add(data)
+
+    def delete_reservation(self, id) -> None:
+        self.__reservation_dal.delete(id=id)
+
+    def change_reservation(self, request, id) -> None:
+        data = dict(request.POST)
+        del data['csrfmiddlewaretoken']
+        data = {key: reduce(lambda x, y: x + y, value) for key, value in data.items()}
+        data['user_id'] = request.user.id
+        places = ParkingSpace.objects.filter(location=data['location'])
+        if places:
+            return None
+        self.__reservation_dal.update(data, id)
+
+
 # class ParkingSpaceController:
 #     def __init__(self) -> None:
 #         self.__parking_space_dal: ParkingSpaceDAL = ParkingSpaceDAL()
-# 
+
 #     def add_parking_space(amount: int, parking_space: ParkingSpace) -> None:
 #         pass
-# 
+
 #     def change_parking_space(parking_space: ParkingSpace) -> None:
 #         pass
