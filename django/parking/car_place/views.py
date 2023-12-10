@@ -100,8 +100,8 @@ class UserInterface(TemplateView):
         context = self.get_context_data()
         context['orders'] = []
         queryset = ParkingSpace.objects.filter(user_id=request.user.id)
-        for i in queryset:
-            context['orders'].append(i.id)
+        for i in enumerate(queryset):
+            context['orders'].append((i[0] + 1, i[1].id))
         return self.render_to_response(context)
 
     def detail(self, request, error=False):

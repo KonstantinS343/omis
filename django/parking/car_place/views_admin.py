@@ -56,8 +56,8 @@ class AdminInterface(TemplateView):
         context = self.get_context_data()
         context['orders'] = []
         queryset = ParkingSpace.objects.filter()
-        for i in queryset:
-            context['orders'].append((i.id, i.status))
+        for i in enumerate(queryset):
+            context['orders'].append((i[0] + 1, i[1].id, i[1].status))
         return self.render_to_response(context)
 
     def detail(self, request, error=False):

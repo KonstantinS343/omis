@@ -61,7 +61,6 @@ class ReservationController:
         if not result:
             return None, "Check the entered data"
         if result != int(request.path.split('/')[-2]):
-            print('qqqqqqqqqqqqqqqqqq')
             self.delete_reservation(user_id=request.user.id, id=request.path.split('/')[-2])
         return request.user.id, "Good"
 

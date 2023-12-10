@@ -14,18 +14,10 @@
           {% endif %}
           <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
-            <div class="overlap-3">
-              <input class="text-wrapper-4" type="text" id="username" name="username" placeholder="Имя пользователя">
-            </div>
-            <div class="overlap">
-              <input class="text-wrapper" type="password" id="password" name="password" placeholder="Пароль">
-            </div>
-            <div class="div-wrapper">
-              <input class="text-wrapper-2" type="password" id="password2" name="password2" placeholder="Подтверждение пароля">
-            </div>
-            <div class="overlap-5">
-              <input class="text-wrapper-6" type="submit" value="Регистрация">
-            </div>
+              <input class="overlap-3" type="text" id="username" name="username" placeholder="Имя пользователя">
+              <input class="overlap" type="password" id="password" name="password" placeholder="Пароль">
+              <input class="div-wrapper" type="password" id="password2" name="password2" placeholder="Подтверждение пароля">
+              <input class="overlap-5" type="submit" value="Регистрация">
           </form>
           <div class="overlap-6"><div class="text-wrapper-7"><a class="auth" href='/login/'>Авторизация</a></div></div>
           <div class="overlap-7"><div class="text-wrapper-8">ParkSpot Finder</div></div>

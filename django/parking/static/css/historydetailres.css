@@ -193,6 +193,9 @@
   background-color: #d9d9d9;
   border: 1px solid;
   border-color: #000000;
+  cursor: pointer;
+  font-size: 24px;
+  color: #000000;
 }
 
 .screen .img {
@@ -272,6 +275,10 @@
   font-size: 24px;
   letter-spacing: 0;
   line-height: normal;
+  position: absolute;
+  width: 740px;
+  height: 50px;
+  background-size: 100% 100%;
 }
 
 .screen .text-wrapper-10 {
@@ -284,6 +291,10 @@
   font-size: 24px;
   letter-spacing: 0;
   line-height: normal;
+  position: absolute;
+  width: 740px;
+  height: 50px;
+  background-size: 100% 100%;
 }
 
 .screen .text-wrapper-11 {
@@ -296,6 +307,10 @@
   font-size: 24px;
   letter-spacing: 0;
   line-height: normal;
+  position: absolute;
+  width: 740px;
+  height: 50px;
+  background-size: 100% 100%;
 }
 
 .screen .text-wrapper-12 {
@@ -308,5 +323,9 @@
   font-size: 24px;
   letter-spacing: 0;
   line-height: normal;
+  position: absolute;
+  width: 740px;
+  height: 50px;
+  background-size: 100% 100%;
 }
 

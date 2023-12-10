@@ -20,21 +20,11 @@
         <form action="{% url 'user_create' pk%}" method="post">
           {% csrf_token %}
           <div class="overlap-5">
-              <div class="overlap-6">
-                  <input type="text" id="duration" name="duration" placeholder="Продолжительность">
-              </div>
-              <div class="overlap-7">
-                  <input type="text" id="location" name="location" placeholder="Местоположение">
-              </div>
-              <div class="overlap-8">
-                  <input type="text" id="time" name="time" placeholder="Время">
-              </div>
-              <div class="overlap-9">
-                  <input type="text" id="date" name="date" placeholder="Дата">
-              </div>
-              <div class="overlap-10">
-                  <input type="submit" value="Оплатить">
-              </div>
+            <input class="overlap-6" type="text" id="duration" name="duration" placeholder="Продолжительность">
+            <input class="overlap-7" type="text" id="location" name="location" placeholder="Местоположение">
+            <input class="overlap-8" type="text" id="time" name="time" placeholder="Время">
+            <input class="overlap-9" type="text" id="date" name="date" placeholder="Дата">
+            <input class="overlap-10" type="submit" value="Оплатить">
           </div>
       </form>
       

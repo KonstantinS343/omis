@@ -171,8 +171,9 @@
   height: 60px;
   top: 282px;
   left: 42px;
-  background-image: url(./img/rectangle-16.svg);
   background-size: 100% 100%;
+  color: #000000;
+  font-size: 24px;
 }
 
 .screen .text-wrapper-7 {
@@ -181,7 +182,6 @@
   left: 26px;
   font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
-  color: #000000;
   font-size: 24px;
   letter-spacing: 0;
   line-height: normal;
@@ -193,8 +193,9 @@
   height: 60px;
   top: 200px;
   left: 42px;
-  background-image: url(./img/rectangle-15.svg);
   background-size: 100% 100%;
+  color: #000000;
+  font-size: 24px;
 }
 
 .screen .text-wrapper-8 {
@@ -215,8 +216,9 @@
   height: 60px;
   top: 118px;
   left: 42px;
-  background-image: url(./img/rectangle-14.svg);
   background-size: 100% 100%;
+  color: #000000;
+  font-size: 24px;
 }
 
 .screen .overlap-9 {
@@ -225,8 +227,9 @@
   height: 60px;
   top: 36px;
   left: 42px;
-  background-image: url(./img/rectangle-13.svg);
   background-size: 100% 100%;
+  color: #000000;
+  font-size: 24px;
 }
 
 .screen .overlap-10 {
@@ -236,6 +239,29 @@
   top: 355px;
   left: 280px;
   background-color: #999999;
+  color: #000000;
+  font-size: 24px;
+  cursor: pointer;
+}
+.screen .overlap-6::placeholder {
+  color: black;
+  font-size: 24px;
+}
+.screen .overlap-7::placeholder {
+  color: black;
+  font-size: 24px;
+}
+.screen .overlap-8::placeholder {
+  color: black;
+  font-size: 24px;
+}
+.screen .overlap-9::placeholder {
+  color: black;
+  font-size: 24px;
+}
+.screen .overlap-10::placeholder {
+  color: black;
+  font-size: 24px;
 }
 
 .screen .text-wrapper-9 {

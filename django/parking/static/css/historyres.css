@@ -163,15 +163,17 @@
   top: 288px;
   left: 490px;
   background-color: #d9d9d9;
+  overflow-y: scroll;
 }
 
 .screen .overlap-6 {
-  position: absolute;
+  position: relative;
   width: 846px;
   height: 129px;
-  top: 49px;
-  left: 31px;
+  margin-top: 49px;
+  margin-left: 31px;
 }
+
 
 .screen .rectangle {
   position: absolute;
