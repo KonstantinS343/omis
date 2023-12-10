@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import LoginInterface, RegisterInterface, HomeInterface, UserInterface
+from .views import LoginInterface, RegisterInterface, UserInterface
 from .views_admin import AdminInterface
 
 
@@ -27,5 +27,4 @@ admin_urls = [
 urlpatterns = [
     path('register/', RegisterInterface.as_view(), name='register'),
     path('login/', LoginInterface.as_view(), name='login'),
-    path('home/', HomeInterface.as_view(), name='home'),
 ] + user_urls + admin_urls

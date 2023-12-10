@@ -6,12 +6,6 @@ from .controllers import AuthorizationController, ReservationController
 from .models import ParkingSpace
 
 
-class HomeInterface(TemplateView):
-    def dispatch(self, request, *args: Any, **kwargs: Any):
-        self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/main/main.html'
-        return super().dispatch(request, *args, **kwargs)
-
-
 class RegisterInterface(TemplateView):
     def __init__(self, **kwargs: Any) -> None:
         self.authorization_controller = AuthorizationController()
@@ -58,7 +52,8 @@ class UserInterface(TemplateView):
 
     def dispatch(self, request, *args: Any, **kwargs: Any):
         if request.user.id is None:
-            return redirect('home')
+            return render(request, '/home/konstantin/bsuir/omix/lab2/django/parking/templates/main/main.html',
+                          {'pk': request.user.id})
         if 'delete' in request.path:
             self.reservation_controller.delete_reservation(id=request.path.split('/')[-2], user_id=request.user.id)
             return redirect('user', pk=request.user.id)

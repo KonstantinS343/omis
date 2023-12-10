@@ -20,7 +20,7 @@ class UserDAL:
 
 
 class ReservationDAL:
-    def bind_place(self, data: Dict[str, str | int], user_id: int):
+    def bind_place(self, data: Dict[str, str | int], user_id: int, duration: int):
         try:
             parking_space = ParkingSpace.objects.filter(**data)[0]
         except (ValidationError, ValueError, IndexError):
@@ -28,7 +28,7 @@ class ReservationDAL:
         if parking_space:
             parking_space.status = True
             parking_space.user_id = user_id
-            parking_space.duration = data['duration']
+            parking_space.duration = duration
             parking_space.save()
         else:
             return None

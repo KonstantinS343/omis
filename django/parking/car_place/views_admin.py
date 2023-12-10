@@ -1,6 +1,6 @@
 from typing import Any
 from django.views.generic.base import TemplateView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 from .controllers import ParkingSpaceController
 from .models import ParkingSpace
@@ -13,9 +13,10 @@ class AdminInterface(TemplateView):
 
     def dispatch(self, request, *args: Any, **kwargs: Any):
         if request.user.id is None:
-            return redirect('home')
+            return render(request, '/home/konstantin/bsuir/omix/lab2/django/parking/templates/main/main.html',
+                          {'pk': request.user.id})
         if 'delete' in request.path:
-            self.parking_space_controller.delete_reservation(id=request.path.split('/')[-2])
+            self.parking_space_controller.delete_parking_space(id=request.path.split('/')[-2])
             return redirect('admin', pk=request.user.id)
         if 'update' in request.path and request.method.lower() == 'post':
             row_id, error = self.parking_space_controller.change_parking_space(request=request,

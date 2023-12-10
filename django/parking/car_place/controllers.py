@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.db.utils import IntegrityError
 
 from functools import reduce
 
@@ -7,7 +8,7 @@ from .manager import UserDAL, ReservationDAL, ParkingSpaceDAL
 
 class AuthorizationController:
     def __init__(self) -> None:
-        self.user_dal = UserDAL()
+        self.__user_dal = UserDAL()
 
     def login(self, request):
         username = request.POST['username']
@@ -30,7 +31,10 @@ class AuthorizationController:
             return None, "Username or password cannot be empty."
         if password != password2:
             return None, "Passwords must match."
-        self.user_dal.create(username=username, password=password)
+        try:
+            self.__user_dal.create(username=username, password=password)
+        except IntegrityError:
+            return None, "Such user already exist."
         return username, "Good"
 
 
@@ -41,10 +45,14 @@ class ReservationController:
     def add_reservation(self, request) -> None:
         data = dict(request.POST)
         del data['csrfmiddlewaretoken']
-        del data['duration']
         data = {key: reduce(lambda x, y: x + y, value) for key, value in data.items()}
+        try:
+            int(data['duration'])
+        except ValueError:
+            return None, "Check the entered data"
+        duration = int(data.pop('duration'))
         data['status'] = 0
-        result = self.__reservation_dal.bind_place(data, request.user.id)
+        result = self.__reservation_dal.bind_place(data, request.user.id, duration)
         if not result:
             return None, "Check the entered data"
         return request.user.id, "Good"
@@ -56,6 +64,10 @@ class ReservationController:
         data = dict(request.POST)
         del data['csrfmiddlewaretoken']
         data = {key: reduce(lambda x, y: x + y, value) for key, value in data.items()}
+        try:
+            int(data['duration'])
+        except ValueError:
+            return None, "Check the entered data"
         result = self.__reservation_dal.update(data=data, user_id=request.user.id, status=1,
                                                duration=data.pop('duration'))
         if not result:
