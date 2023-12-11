@@ -48,7 +48,7 @@ class ReservationController:
         data = {key: reduce(lambda x, y: x + y, value) for key, value in data.items()}
         try:
             int(data['duration'])
-        except ValueError:
+        except Exception:
             return None, "Check the entered data"
         duration = int(data.pop('duration'))
         data['status'] = 0
@@ -66,7 +66,7 @@ class ReservationController:
         data = {key: reduce(lambda x, y: x + y, value) for key, value in data.items()}
         try:
             int(data['duration'])
-        except ValueError:
+        except Exception:
             return None, "Check the entered data"
         result = self.__reservation_dal.update(data=data, user_id=request.user.id, status=1,
                                                duration=data.pop('duration'))

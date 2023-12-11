@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/createres.css' %}" />
+  </head>
+  <body>
+    <div class="screen">
+      <div class="div">
+        <div class="overlap-group">
+          {% if error %}
+            <div class="error">{{ error }}</div>
+          {% endif %}
+          <div class="overlap"><div class="text-wrapper"><a class="auth"  href={% url 'user_history' pk%}>История бронирования</a></div></div>
+          <div class="div-wrapper"><div class="text-wrapper-2"><a class="auth"  href={% url 'user_create' pk%}>Создать бронирование</a></div></div>
+          <div class="overlap-4"><div class="text-wrapper-5">ParkSpot Finder</div></div>
+        </div>
+        <div class="text-wrapper-6">ParkSpot Finder</div>
+        <form action="{% url 'user_create' pk%}" method="post">
+          {% csrf_token %}
+          <div class="overlap-5">
+            <input class="overlap-6" type="text" id="duration" name="duration" placeholder="Продолжительность">
+            <select class="overlap-7" id="location" name="location">
+              <option value="" disabled selected hidden>Местоположение</option>
+              {% for i in options%}
+              <option value="{{i.location}}">{{i.location}}</option>
+              {% endfor %}
+            </select>
+            <select class="overlap-8" id="time" name="time">
+                <option value="" disabled selected hidden>Время</option>
+                {% for i in options%}
+                <option value="{{i.time}}">{{i.time}}</option>
+                {% endfor %}
+              </select>
+            <select class="overlap-9" id="date" name="date">
+                <option value="" disabled selected hidden>Дата</option>
+                {% for i in options%}
+                <option value="{{i.date}}">{{i.date}}</option>
+                {% endfor %}
+              </select>
+            <input class="overlap-10" type="submit" value="Оплатить">
+          </div>
+      </form>
+      
+      </div>
+    </div>
+  </body>
+</html>
+

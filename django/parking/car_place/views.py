@@ -86,6 +86,8 @@ class UserInterface(TemplateView):
     def create(self, request, error=False):
         self.template_name = '/home/konstantin/bsuir/omix/lab2/django/parking/templates/createres/main.html'
         context = self.get_context_data()
+        # queryset = ParkingSpace.objects.filter(status=False)
+        # context['options'] = queryset
         if error:
             context['error'] = error
         return self.render_to_response(context)
